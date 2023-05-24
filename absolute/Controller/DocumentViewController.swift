@@ -57,6 +57,7 @@ class DocumentViewController: UIViewController {
                     print("Ошибка чтения файла: \(error)")
                 }
             } else {
+                print("sad")
             }
         })
     }
@@ -67,24 +68,28 @@ class DocumentViewController: UIViewController {
     
     @objc func save() {
         guard let filePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("edited.xliff").path else { return }
-        saveFile(with: getData(), filePath: filePath)
+        let values = getData()
+        saveFile(with: values, filePath: filePath)
     }
     
     func getData() -> [Translation] {
-        sourceArray = []
-
-        for indexPath in collectionView.indexPathsForVisibleItems {
+        
+        self.translations = []
+        self.sourceArray = []
+        self.targetArray = []
+        let indexPaths = collectionView.indexPathsForVisibleItems.sorted { $0.item < $1.item }
+        
+        for indexPath in indexPaths {
             if let cell = collectionView.cellForItem(at: indexPath) as? TranslationCell {
                 if let cellData = cell.getData() {
                     if indexPath.row % 2 == 0 {
-                       sourceArray.append(cellData)
+                        sourceArray.append(cellData)
                     } else {
                         targetArray.append(cellData)
                     }
                 }
             }
         }
-        
         for i in 0...sourceArray.count - 1 {
             self.translations.append(.init(id: "\(i)", source: sourceArray[i], target: targetArray[i]))
         }
