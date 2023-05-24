@@ -54,10 +54,8 @@ class DocumentViewController: UIViewController {
                     }
                     
                 } catch {
-                    print("Ошибка чтения файла: \(error)")
+                    print(error)
                 }
-            } else {
-                print("sad")
             }
         })
     }

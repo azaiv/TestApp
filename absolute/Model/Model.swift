@@ -84,8 +84,7 @@ func saveFile(with translations: [Translation], filePath: String) {
     
     do {
         try xliffString.write(toFile: filePath, atomically: true, encoding: .utf8)
-        print("XLIFF файл успешно обновлен.")
     } catch {
-        print("Ошибка при обновлении XLIFF файла: \(error)")
+        print(error)
     }
 }

@@ -22,8 +22,8 @@ class TranslationCell: UICollectionViewCell {
         ])
  
         textView.textAlignment = .center
-        textView.font = .systemFont(ofSize: 16)
-        textView.textContainerInset = .init(top: 15, left: 20, bottom: 15, right: 20)
+        textView.font = .systemFont(ofSize: 15)
+        textView.textContainerInset = .init(top: 15, left: 0, bottom: 15, right: 0)
 
         contentView.layer.borderWidth = 0.5
         contentView.layer.borderColor = UIColor.black.cgColor
